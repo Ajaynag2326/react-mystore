@@ -2,7 +2,7 @@
     padding: 20px;
     display: flex;
     justify-content: center;
-    background-color: #305058;
+    background-color: rgb(59, 79, 114);
 }
 .Login-Box{
     margin-top: 100px;
@@ -25,12 +25,7 @@
     border-radius: 5px;
     margin-top: 5px;
     border: 0px solid silver;
-    /* color: white; */
-    background-color:#0dcaf0;
+    color: white;
+    background-color:rgb(59, 79, 114);
     font-size: large;
-    /* font-weight: 800px; */
-}
-.Login-Box div button a{
-    text-decoration: none;
-    color: black;
 }

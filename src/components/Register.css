@@ -3,7 +3,7 @@
     padding: 10px;
     display: flex;
     justify-content: center;
-    background-color: #305058;
+    background-color: rgb(59, 79, 114);
 }
 .Register-Box{
     margin-top: 80px;
@@ -28,9 +28,22 @@
     margin-top: 5px;
     font-size: large;
     border: 0px solid silver;
-    background-color:#0dcaf0;
+    background-color:rgb(59, 79, 114);
 }
-.Register-Box div a{
+p a{
     text-decoration: none;
     color: black;
+}
+.Register-Box2{
+    margin-top: 80px;
+    margin-bottom: 50px;
+    background-color: white;
+    padding: 15px;
+    border-radius: 5px;
+    margin-left: 20px;
+}
+.Register-Box2 button {
+    background-color:rgb(59, 79, 114);
+    color: white;
+    border-radius: 5px;
 }
