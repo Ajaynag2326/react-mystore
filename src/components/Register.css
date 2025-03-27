@@ -47,3 +47,20 @@ p a{
     color: white;
     border-radius: 5px;
 }
+
+.App-Register-Tab td{
+    border: 1px solid gray;
+    border-radius: 3px;
+    padding: 5px;
+    text-align: center;
+    margin:0px;
+    
+}
+.App-Register-Tab th{
+    border: 1px solid gray;
+    background-color:rgb(59, 79, 114);
+    color: white;
+    padding: 10px;
+    border-radius: 3px;
+
+}
