@@ -1,29 +1,28 @@
 import React from "react";
-import { useState,useRef } from "react";
 import "./Register.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState, useRef, useContext } from "react";
+import { appContext } from "../App";
 export default function Register() {
-  const [users, setUsers] = useState([]);
-  const [user, setUser] = useState({});
-  const [label, setLabel] = useState("");
-  const colRef=useRef();
 
+   const { users, setUsers, user, setUser } = useContext(appContext);
+  const [msg, setMsg] = useState();
+  const msgRef = useRef();
+  const Navigate = useNavigate()
   const handleSubmit = () => {
-    const existUser = users.find((value) => value.email === user.email);
-    if (existUser) {
-      setLabel("User Already Exist");
-      colRef.current.style.color="red"
+    const found = users.find((value) => value.email === user.email);
+    if (found) {
+      setMsg("User already exists");
+      msgRef.current.style.color = "red";
     } else {
-      setLabel("Welcome");
-      colRef.current.style.color="green"
+      setMsg();
       setUsers([...users, user]);
-      setUser({...user, email:"",uname:"",pass:""})
+      //setUser({ ...user, name: "", email: "", password: "" });
+      Navigate("/")
     }
   };
-
-  const handleDelete = (useri) => {
-    setUsers(users.filter((value) => value !== useri));
-    setLabel("");
+  const handleDelete = (email) => {
+    setUsers(users.filter((value) => value.email != email));
   };
 
   return (
@@ -31,39 +30,39 @@ export default function Register() {
       <div className="Register-Box">
         <div>
           <h1>Register</h1>
+          <p ref={msgRef}>{msg}</p>
         </div>
         <div>
-          <p>
-            <input
-              type="email"
-              value={user.email}
-              placeholder="Enter Email"
-              onChange={(e) => setUser({ ...user, email: e.target.value })}
-            />
-          </p>
-          <p>
-            <input
-              type="text"
-              value={user.uname}
-              placeholder="Enter Name"
-              onChange={(e) => setUser({ ...user, uname: e.target.value })}
-            />
-          </p>
-          <p>
-            <input
-              type="password"
-              value={user.pass}
-              placeholder="Enter Password"
-              onChange={(e) => setUser({ ...user, pass: e.target.value })}
-            />
-          </p>
-          <p>
-            <button onClick={handleSubmit}>SignIn</button>
-          </p>
-          <p>
-            <Link to="../login">Already Registered? Login here</Link>
-          </p>
-          <h3 ref={colRef}>{label}</h3>
+        <p>
+          <input
+            type="text"
+            value={user.name}
+            placeholder="Enter Name"
+            onChange={(e) => setUser({ ...user, name: e.target.value })}
+          ></input>
+        </p>
+        <p>
+          <input
+            type="text"
+            value={user.email}
+            placeholder="Email address"
+            onChange={(e) => setUser({ ...user, email: e.target.value })}
+          ></input>
+        </p>
+        <p>
+          <input
+            type="password"
+            value={user.password}
+            placeholder="New password"
+            onChange={(e) => setUser({ ...user, password: e.target.value })}
+          ></input>
+        </p>
+        <p>
+          <button onClick={handleSubmit}>Submit</button>
+        </p>
+        <p>
+          <Link to="../login">Already a member? Login here!</Link>
+        </p>
         </div>
       </div>
       <div className="Register-Box2">
@@ -80,11 +79,11 @@ export default function Register() {
           <tbody>
             {users.map((value, index) => (
               <tr key={index}>
-                <td>{value.uname}</td>
+                <td>{value.name}</td>
                 <td>{value.email}</td>
-                <td>{value.pass}</td>
+                <td>{value.password}</td>
                 <td>
-                  <button onClick={() => handleDelete(value)}>X</button>
+                  <button onClick={() => handleDelete(value.email)}>X</button>
                 </td>
               </tr>
             ))}
