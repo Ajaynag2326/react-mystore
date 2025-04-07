@@ -26,7 +26,7 @@ export default function Header() {
             Orders({myOrder})
           </Link>
         )}
-        {user.email === "" ? (
+        {user.email === "" || !user.email ? (
           <Link to="login" className="App-Header-Link">
             Login
           </Link>
