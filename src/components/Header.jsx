@@ -10,7 +10,7 @@ export default function Header() {
   useEffect(() => {
     const found = orders.filter((value) => value.email === user.email);
     setMyOrder(found.length);
-  }, [orders]);
+  }, [orders,user]);
   return (
     <div className="App-Header-Row">
       <h1>My React Store</h1>
